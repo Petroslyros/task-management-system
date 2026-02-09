@@ -1,73 +1,73 @@
-# React + TypeScript + Vite
+# Task Management System - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive React 19 application for collaborative task and project management. Built with TypeScript, Vite, TailwindCSS, and shadcn/ui.
 
-Currently, two official plugins are available:
+**Live at:** http://localhost:5173
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌟 Features
 
-## React Compiler
+### User Experience
+- 🎨 Dark mode support with persistent preferences
+- 📱 Fully responsive design (desktop, tablet, mobile)
+- ⚡ Lightning-fast performance with Vite
+- 🔐 Secure JWT authentication with HTTP-only cookies
+- 🎭 Intuitive, accessible UI with shadcn/ui components
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Project Management
+- ✨ Create and organize projects
+- 👥 Add/remove team members with role-based access
+- 📊 View team structure and member details
+- 🔄 Real-time project updates
 
-## Expanding the ESLint configuration
+### Task Management
+- 📋 Complete task lifecycle (Backlog → In Progress → Review → Done)
+- 🎯 Assign tasks to team members
+- ⏰ Set due dates and priority levels
+- 🔍 Search and filter tasks
+- 📝 Add comments for team discussion
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Team Collaboration
+- 💬 Task comments with user attribution
+- 👤 Team member management
+- 🔔 Real-time feedback and notifications
+- ✅ Role-based permissions
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🏗️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+| Component | Technology | Version |
+|-----------|-----------|---------|
+| Framework | React | 19.1.1 |
+| Language | TypeScript | Latest |
+| Build Tool | Vite | Latest |
+| Styling | TailwindCSS | 4.1.16 |
+| UI Components | shadcn/ui | Latest |
+| Forms | React Hook Form | 7.65.0 |
+| Validation | Zod | 4.1.12 |
+| Routing | React Router | 7.9.4 |
+| Icons | Lucide React | 0.546.0 |
+| HTTP Client | Native Fetch API | - |
+| Cookies | js-cookie | 3.0.5 |
+| Tokens | jwt-decode | 4.0.0 |
+| Notifications | Sonner | Latest |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- Modern web browser
+
+### Installation
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/Petroslyros/task-management-system.git
+cd task-management-system
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. **Install dependencies**
+```bash
+npm install
 ```
+
+3. **Configure environment** (create `.env.local`)
