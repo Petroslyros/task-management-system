@@ -24,8 +24,8 @@ export function AuthButton() {
             </span>
             <Button
                 onClick={handleLogout}
-                variant="outline"
-                className="text-white border-white hover:bg-red-600 hover:border-red-600 hover:text-white transition-all flex items-center gap-2"
+                variant="destructive"
+                className="bg-red-500 hover:bg-red-700 text-white transition-all flex items-center gap-2 border-none"
             >
                 <LogOut size={18} />
                 <span className="hidden sm:inline">Logout</span>

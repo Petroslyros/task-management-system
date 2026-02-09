@@ -47,9 +47,22 @@ const TaskPage = () => {
     // Load project members
     useEffect(() => {
         if (!projectId) return;
-        getProjectMembers(Number(projectId))
-            .then(setMembers)
-            .catch((err) => console.error("Failed to load members", err));
+
+        const loadMembers = async () => {
+            try {
+                const data = await getProjectMembers(Number(projectId));
+                setMembers(data);
+
+                if (data.length === 0) {
+                    toast.warning("No team members in this project. Add members to assign tasks.");
+                }
+            } catch (err) {
+                console.error("Failed to load members:", err);
+                toast.error(err instanceof Error ? err.message : "Failed to load team members");
+            }
+        };
+
+        loadMembers();
     }, [projectId]);
 
     // Load task if editing
@@ -74,14 +87,25 @@ const TaskPage = () => {
     const onSubmit = async (data: TaskInsert | TaskUpdate) => {
         if (!projectId) return;
         try {
-            const dueDate = (data as any).dueDate ? new Date((data as any).dueDate).toISOString() : null;
-            const assignedToUserId = (data as any).assignedToUserId ? Number((data as any).assignedToUserId) : null;
+            console.log("Form data:", data); // 🔍 Debug
+
+            // ✅ Handle date conversion
+            const dueDate = (data as any).dueDate
+                ? new Date((data as any).dueDate).toISOString()
+                : null;
+
+            // ✅ Handle user assignment - must be number or null
+            const assignedToUserId = (data as any).assignedToUserId
+                ? Number((data as any).assignedToUserId)
+                : null;
 
             const payload: TaskInsert | TaskUpdate = {
                 ...data,
                 dueDate,
                 assignedToUserId,
             } as any;
+
+            console.log("Payload:", payload); // 🔍 Debug
 
             if (isEdit && taskId) {
                 await updateTask(Number(projectId), Number(taskId), payload as TaskUpdate);
@@ -92,6 +116,7 @@ const TaskPage = () => {
             }
             navigate(`/projects/${projectId}/tasks`);
         } catch (error) {
+            console.error("Task submission error:", error);  // 🔍 Debug
             toast.error(error instanceof Error ? error.message : "Something went wrong");
         }
     };

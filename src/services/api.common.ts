@@ -1,6 +1,4 @@
-import { getCookie } from "@/utils/cookies";
-
-const API_URL = import.meta.env.VITE_API_URL || "https://localhost:5001";
+export const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
 
 export function getAuthHeaders(): HeadersInit {
     const token = getCookie("jwt_token");
@@ -11,14 +9,30 @@ export function getAuthHeaders(): HeadersInit {
 }
 
 export async function handleResponse<T>(res: Response): Promise<T> {
-    const data = await res.json();
+    let data: any;
 
-    if (!res.ok) {
-        const errorMessage = data?.message || `HTTP Error: ${res.status}`;
-        throw new Error(errorMessage);
+    try {
+        data = await res.json();
+    } catch (e) {
+        throw new Error(`Failed to parse response: ${res.statusText}`);
     }
 
-    return data.data || data;
+    if (!res.ok) {
+        throw new Error(
+            data?.message ||
+            data?.error ||
+            `HTTP Error ${res.status}: ${res.statusText}`
+        );
+    }
+
+    // ✅ Response is already in correct format
+    return data;
 }
 
-export { API_URL };
+// Helper to get/set cookies
+export function getCookie(name: string): string | null {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop()?.split(";").shift() || null;
+    return null;
+}

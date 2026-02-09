@@ -84,14 +84,14 @@ const ProjectsPage = () => {
                             <h3 className="text-xl font-semibold text-gray-800 mb-2">{project.name}</h3>
                             <p className="text-gray-600 text-sm mb-4 line-clamp-2">{project.description}</p>
 
-                            <div className="flex gap-2 mb-4 text-sm">
-                                <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full">
-                                    👥 {project.memberCount} members
-                                </span>
-                                <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full">
-                                    ✓ {project.taskCount} tasks
-                                </span>
-                            </div>
+                            {/*<div className="flex gap-2 mb-4 text-sm">*/}
+                            {/*    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full">*/}
+                            {/*        👥 {project.memberCount} members*/}
+                            {/*    </span>*/}
+                            {/*    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full">*/}
+                            {/*        ✓ {project.taskCount} tasks*/}
+                            {/*    </span>*/}
+                            {/*</div>*/}
 
                             <div className="flex gap-2">
                                 <Button

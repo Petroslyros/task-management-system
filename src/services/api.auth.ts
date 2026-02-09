@@ -1,6 +1,7 @@
 import type { UserLoginDTO } from "@/schemas/login";
 import type { UserRegisterDTO } from "@/schemas/register";
-import { handleResponse, API_URL } from "./api.common";
+import { handleResponse, API_URL, getAuthHeaders } from "./api.common";
+import type { UserReadOnly } from "@/schemas/users";
 
 export type JwtTokenResponse = {
     token: string;
@@ -41,7 +42,6 @@ export async function login({ username, password }: UserLoginDTO): Promise<AuthR
 }
 
 export async function register({ email, username, password, firstname, lastname }: UserRegisterDTO): Promise<RegisterResponse> {
-    // Only send the fields the backend expects, exclude confirmPassword
     const registerData = {
         email,
         username,
@@ -61,4 +61,25 @@ export async function register({ email, username, password, firstname, lastname 
         success: true,
         data: result,
     };
+}
+
+export async function searchUsers(query: string): Promise<UserReadOnly[]> {
+    if (!query.trim()) {
+        return [];
+    }
+
+    try {
+        const res = await fetch(`${API_URL}/api/users/search?query=${encodeURIComponent(query)}`, {
+            method: "GET",
+            headers: getAuthHeaders(),
+        });
+
+        // ✅ Response is already an array
+        const result = await handleResponse<UserReadOnly[]>(res);
+
+        return Array.isArray(result) ? result : [];
+    } catch (error) {
+        console.error("Search users error:", error);
+        throw error;
+    }
 }

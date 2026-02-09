@@ -9,6 +9,7 @@ import { createProject, getProject, updateProject } from "@/services/api.project
 import { useNavigate, useParams } from "react-router";
 import { toast } from "sonner";
 import type { ProjectInsertDTO, ProjectUpdateDTO } from "@/schemas/projects";
+import { Users } from "lucide-react";
 
 const ProjectPage = () => {
     const { projectId } = useParams();
@@ -72,22 +73,33 @@ const ProjectPage = () => {
     }, [isEdit]);
 
     return (
-        <div className="max-w-2xl mx-auto py-8">
-            <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-200">
-                <h1 className="text-3xl font-bold mb-8 text-gray-800">
-                    {isEdit ? "Edit Project" : "Create New Project"}
-                </h1>
+        <div className="max-w-2xl mx-auto py-8 container px-4">
+            <div className="bg-white dark:bg-slate-800 rounded-lg shadow-lg p-8 border border-gray-200 dark:border-slate-700">
+                <div className="flex justify-between items-center mb-8">
+                    <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
+                        {isEdit ? "Edit Project" : "Create New Project"}
+                    </h1>
+                    {isEdit && projectId && (
+                        <Button
+                            onClick={() => navigate(`/projects/${projectId}/members`)}
+                            className="bg-blue-600 hover:bg-blue-700 text-white flex gap-2"
+                        >
+                            <Users size={18} />
+                            Members
+                        </Button>
+                    )}
+                </div>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div>
-                        <Label htmlFor="name" className="text-gray-700 font-medium">
+                        <Label htmlFor="name" className="text-gray-700 dark:text-gray-300 font-medium">
                             Project Name *
                         </Label>
                         <Input
                             id="name"
                             placeholder="e.g., Web Development Coursework"
                             {...register("name")}
-                            className="mt-2 border-gray-300"
+                            className="mt-2 border-gray-300 dark:bg-slate-700 dark:border-slate-600 dark:text-white"
                         />
                         {getErrorMessage("name") && (
                             <p className="text-red-600 text-sm mt-1">{getErrorMessage("name")}</p>
@@ -95,14 +107,14 @@ const ProjectPage = () => {
                     </div>
 
                     <div>
-                        <Label htmlFor="description" className="text-gray-700 font-medium">
+                        <Label htmlFor="description" className="text-gray-700 dark:text-gray-300 font-medium">
                             Description
                         </Label>
                         <textarea
                             id="description"
                             placeholder="Project description..."
                             {...register("description")}
-                            className="mt-2 w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="mt-2 w-full border border-gray-300 dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             rows={4}
                         />
                     </div>
@@ -111,7 +123,7 @@ const ProjectPage = () => {
                         <Button
                             type="submit"
                             disabled={isSubmitting}
-                            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+                            className="flex-1 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold"
                         >
                             {isSubmitting ? "Saving..." : isEdit ? "Update" : "Create"}
                         </Button>
@@ -119,7 +131,7 @@ const ProjectPage = () => {
                             type="button"
                             onClick={() => navigate("/projects")}
                             variant="outline"
-                            className="flex-1"
+                            className="flex-1 dark:bg-slate-700 dark:border-slate-600 dark:text-white"
                         >
                             Cancel
                         </Button>

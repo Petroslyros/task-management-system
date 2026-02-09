@@ -2,33 +2,37 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-gray-900 text-gray-300 mt-16">
-            <div className="container mx-auto px-4 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                    <div>
-                        <h3 className="text-white font-bold mb-4">TaskFlow</h3>
-                        <p className="text-sm">Modern team collaboration for classroom projects.</p>
+        <footer className="bg-[#0b0f1a] text-gray-400 mt-10 border-t border-gray-800/50">
+            <div className="container mx-auto px-6 py-6"> {/* Μειωμένο padding */}
+                <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+
+                    {/* Left: Brand & Tagline */}
+                    <div className="flex items-center gap-3">
+                        <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
+                            <span className="text-white font-bold text-sm">T</span>
+                        </div>
+                        <span className="text-white font-semibold tracking-tight">TaskFlow</span>
+                        <span className="hidden sm:inline text-gray-600">|</span>
+                        <p className="text-xs hidden sm:inline">Modern collaboration for students</p>
                     </div>
-                    <div>
-                        <h4 className="text-white font-semibold mb-4">Features</h4>
-                        <ul className="text-sm space-y-2">
-                            <li><a href="#" className="hover:text-white transition-colors">Projects</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Tasks</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Collaboration</a></li>
-                        </ul>
+
+                    {/* Center: Quick Links (Horizontal πλέον) */}
+                    <nav className="flex gap-6 text-xs font-medium">
+                        <a href="#" className="hover:text-white transition-colors">Projects</a>
+                        <a href="#" className="hover:text-white transition-colors">About</a>
+                        <a href="#" className="hover:text-white transition-colors">Privacy</a>
+                        <a href="#" className="hover:text-white transition-colors">Contact</a>
+                    </nav>
+
+                    {/* Right: Copyright & Status */}
+                    <div className="flex items-center gap-4 text-[10px] uppercase tracking-widest text-gray-500">
+                        <p>&copy; {currentYear}</p>
+                        <div className="flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                            <span className="hidden lg:inline">Live</span>
+                        </div>
                     </div>
-                    <div>
-                        <h4 className="text-white font-semibold mb-4">Info</h4>
-                        <ul className="text-sm space-y-2">
-                            <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <hr className="border-gray-700 mb-8" />
-                <div className="text-center text-sm">
-                    <p>&copy; {currentYear} TaskFlow. Built for classroom collaboration. All rights reserved.</p>
+
                 </div>
             </div>
         </footer>

@@ -4,17 +4,17 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
 const HomePage = () => {
-    const { isAuthenticated, username, user, logoutUser } = useAuth();
+    const { isAuthenticated, username, user } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
         document.title = "TaskFlow - Home";
     }, []);
 
-    const handleLogout = () => {
-        logoutUser();
-        navigate("/login");
-    };
+    // const handleLogout = () => {
+    //     logoutUser();
+    //     navigate("/login");
+    // };
 
     return (
         <div className="py-12 container mx-auto px-4">
@@ -22,13 +22,13 @@ const HomePage = () => {
                 <div className="max-w-2xl mx-auto">
                     <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow-lg p-8 border border-blue-200">
                         <h1 className="text-4xl font-bold text-gray-800 mb-4">
-                            Welcome back, <span className="text-blue-600">{username || user?.username}!</span> 👋
+                            Welcome back, <span className="text-blue-600">{username || user?.username}!</span>
                         </h1>
                         <p className="text-gray-700 text-lg mb-8">
                             Manage your team projects efficiently with TaskFlow. Create projects, assign tasks, and collaborate with your classmates.
                         </p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2  mb-8">
                             <div className="bg-white rounded-lg p-6 shadow border-l-4 border-blue-600">
                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">📊 Projects</h3>
                                 <p className="text-gray-600 mb-4">Create and manage your classroom projects</p>
@@ -40,26 +40,26 @@ const HomePage = () => {
                                 </Button>
                             </div>
 
-                            <div className="bg-white rounded-lg p-6 shadow border-l-4 border-green-600">
-                                <h3 className="text-xl font-semibold text-gray-800 mb-2">✨ Features</h3>
-                                <p className="text-gray-600 mb-4">Task assignment, team collaboration, progress tracking</p>
-                                <Button
-                                    onClick={() => navigate("/projects")}
-                                    variant="outline"
-                                    className="w-full border-green-600 text-green-600 hover:bg-green-50"
-                                >
-                                    Get Started
-                                </Button>
-                            </div>
+                            {/*<div className="bg-white rounded-lg p-6 shadow border-l-4 border-green-600">*/}
+                            {/*    <h3 className="text-xl font-semibold text-gray-800 mb-2">✨ Features</h3>*/}
+                            {/*    <p className="text-gray-600 mb-4">Task assignment, team collaboration, progress tracking</p>*/}
+                            {/*    <Button*/}
+                            {/*        onClick={() => navigate("/projects")}*/}
+                            {/*        variant="outline"*/}
+                            {/*        className="w-full border-green-600 text-green-600 hover:bg-green-50"*/}
+                            {/*    >*/}
+                            {/*        Get Started*/}
+                            {/*    </Button>*/}
+                            {/*</div>*/}
                         </div>
 
-                        <Button
-                            onClick={handleLogout}
-                            variant="destructive"
-                            className="w-full"
-                        >
-                            Logout
-                        </Button>
+                        {/*<Button*/}
+                        {/*    onClick={handleLogout}*/}
+                        {/*    variant="destructive"*/}
+                        {/*    className=""*/}
+                        {/*>*/}
+                        {/*    Logout*/}
+                        {/*</Button>*/}
                     </div>
                 </div>
             ) : (
